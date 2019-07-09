@@ -1,8 +1,23 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'devise/jwt/test_helpers'
 
-RSpec.describe Api::V1::MessagesController, type: :controller do
+describe Api::V1::MessagesController, type: :controller do
+  include Devise::Test::IntegrationHelpers
+
+  let!(:headers) do
+    user = FactoryBot.create(:user)
+    headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    Devise::JWT::TestHelpers.auth_headers(headers, user)
+  end
+
+  let!(:user) { FactoryBot.create(:user) }
+
+  before do
+    request.headers.merge!(headers)
+  end
+
   describe 'GET #index' do
     let!(:messages) { FactoryBot.create_list(:message, 2) }
 

@@ -3,6 +3,7 @@
 module Api
   module V1
     class MessagesController < ApplicationController
+      before_action :authenticate_user!
       before_action :set_message, only: %i[show update destroy]
 
       def index

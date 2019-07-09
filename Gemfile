@@ -6,11 +6,14 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'devise-jwt', '~> 0.5.9'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
 group :development, :test do
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.2'
+  gem 'ffaker', '~> 2.11'
   gem 'pry', '~> 0.12.2'
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
 end
@@ -22,4 +25,4 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
