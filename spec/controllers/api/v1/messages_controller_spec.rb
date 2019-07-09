@@ -6,13 +6,12 @@ require 'devise/jwt/test_helpers'
 describe Api::V1::MessagesController, type: :controller do
   include Devise::Test::IntegrationHelpers
 
-  let!(:headers) do
-    user = FactoryBot.create(:user)
+  let(:headers) do
     headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
     Devise::JWT::TestHelpers.auth_headers(headers, user)
   end
 
-  let!(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     request.headers.merge!(headers)
@@ -69,7 +68,7 @@ describe Api::V1::MessagesController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:message) { FactoryBot.create(:message, content: 'foo') }
+    let!(:message) { FactoryBot.create(:message, content: 'foo', user: user) }
     let(:new_content) { 'bar' }
 
     before do
@@ -90,7 +89,7 @@ describe Api::V1::MessagesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:message) { FactoryBot.create(:message, content: 'foo') }
+    let!(:message) { FactoryBot.create(:message, content: 'foo', user: user) }
 
     before do
       delete :destroy, params: { id: message.id }

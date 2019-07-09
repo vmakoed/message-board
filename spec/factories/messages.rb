@@ -3,5 +3,7 @@
 FactoryBot.define do
   factory :message do
     content { 'text' }
+
+    association :user
   end
 end

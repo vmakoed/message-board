@@ -9,6 +9,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise-jwt', '~> 0.5.9'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
+gem 'pundit', '~> 2.0', '>= 2.0.1'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'

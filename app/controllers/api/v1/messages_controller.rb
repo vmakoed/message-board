@@ -8,16 +8,22 @@ module Api
 
       def index
         @messages = Message.all
+        authorize @messages
 
         render json: @messages
       end
 
       def show
+        authorize @message
+
         render json: @message
       end
 
       def create
         @message = Message.new(message_params)
+        @message.user = current_user
+
+        authorize @message
 
         if @message.save
           render json: @message, status: :created, location: api_v1_message_url(@message)
@@ -27,6 +33,8 @@ module Api
       end
 
       def update
+        authorize @message
+
         if @message.update(message_params)
           render json: @message
         else
@@ -35,6 +43,8 @@ module Api
       end
 
       def destroy
+        authorize @message
+
         @message.destroy
       end
 
