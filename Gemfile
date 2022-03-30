@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise-jwt', '~> 0.5.9'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'pundit', '~> 2.0', '>= 2.0.1'
 
 group :development, :test do
